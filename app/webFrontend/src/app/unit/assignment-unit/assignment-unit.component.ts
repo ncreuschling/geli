@@ -8,7 +8,7 @@ import {AssignmentService} from '../../shared/services/data.service';
 import {UserService} from '../../shared/services/user.service';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {SnackBarService} from '../../shared/services/snack-bar.service';
-import {saveAs} from 'file-saver/FileSaver';
+import {saveAs} from 'file-saver';
 import {IFile} from '../../../../../../shared/models/mediaManager/IFile';
 import {IAssignment} from '../../../../../../shared/models/assignment/IAssignment';
 import {TranslatableSnackBarService} from '../../shared/services/translatable-snack-bar.service';
@@ -176,7 +176,7 @@ export class AssignmentUnitComponent implements OnInit {
   public async downloadAllAssignments() {
     this.disableDownloadButton = true;
     try {
-      const response = <Response> await this.assignmentService.downloadAllAssignments(this.assignmentUnit._id.toString());
+      const response = await this.assignmentService.downloadAllAssignments(this.assignmentUnit._id.toString());
       saveAs(response.body, this.assignmentUnit.name + '.zip');
     } catch (err) {
       this.snackBar.openLong('unit.assignment.errorDownload');
@@ -186,10 +186,9 @@ export class AssignmentUnitComponent implements OnInit {
 
   async downloadSingleAssignment(assignment) {
     this.disableDownloadButton = true;
-
     try {
       const {firstName, lastName} = assignment.user.profile;
-      const response = <Response> await this.assignmentService
+      const response = await this.assignmentService
         .downloadSingleAssignment(this.assignmentUnit._id.toString(), assignment.user._id.toString());
       saveAs(response.body, `${lastName}, ${firstName} - ${this.assignmentUnit.name}.zip`);
     } catch (err) {

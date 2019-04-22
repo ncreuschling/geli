@@ -6,7 +6,7 @@ import {UserService} from '../../shared/services/user.service';
 import {User} from '../../models/User';
 import {TitleService} from '../../shared/services/title.service';
 import {BackendService} from '../../shared/services/backend.service';
-import {saveAs} from 'file-saver/FileSaver';
+import {saveAs} from 'file-saver';
 import {SnackBarService} from '../../shared/services/snack-bar.service';
 
 @Component({

@@ -14,6 +14,7 @@ import {IConfig} from '../../../../../../shared/models/IConfig';
 import {IAssignment} from '../../../../../../shared/models/assignment/IAssignment';
 import {INotificationView} from '../../../../../../shared/models/INotificationView';
 import {INotificationSettingsView} from '../../../../../../shared/models/INotificationSettingsView';
+import {HttpResponse} from '@angular/common/http';
 
 export abstract class DataService {
 
@@ -326,12 +327,12 @@ export class AssignmentService extends DataService {
     });
   }
 
-  downloadAllAssignments(unitId: string): Promise<Response> {
+  downloadAllAssignments(unitId: string): Promise<HttpResponse<Blob>> {
     return this.backendService.getDownload(this.apiPath + unitId + '/assignments/files')
         .toPromise();
   }
 
-  downloadSingleAssignment(unitId: string, userId: string): Promise<Response> {
+  downloadSingleAssignment(unitId: string, userId: string): Promise<HttpResponse<Blob>> {
     return this.backendService.getDownload(this.apiPath + unitId + '/assignments/' + userId + '/files')
       .toPromise();
   }
@@ -541,7 +542,7 @@ export class DownloadFileService extends DataService {
       .toPromise();
   }
 
-  getFile(id: string): Promise<Response> {
+  getFile(id: string): Promise<HttpResponse<Blob>> {
     return this.backendService
       .getDownload(this.apiPath + id)
       .toPromise();
@@ -557,7 +558,7 @@ export class ConfigService extends DataService {
 
   async getDownloadMaxFileSize () {
     const res = <IConfig><any> await this.readSingleItem('public/downloadMaxFileSize');
-    const _value =  Number.parseInt(res.value);
+    const _value = Number.parseInt(res.value, 10);
     const  value = isNaN(_value) ? 51200 : _value;
     this.downloadMaxFileSize = value;
 

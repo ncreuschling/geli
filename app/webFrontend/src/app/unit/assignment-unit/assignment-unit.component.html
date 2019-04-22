@@ -48,7 +48,7 @@
 </ng-container>
 
 <!--TEACHER VIEW-->
-<ng-container *ngIf="this.userService.isTeacher()">
+<ng-container *ngIf="this.userService.isTeacher() || this.userService.isAdmin()">
   <button mat-raised-button color="primary" [disabled]="this.disableDownloadButton" (click)="downloadAllAssignments()">
     {{ 'unit.assignment.downloadAll' | translate }}
   </button>

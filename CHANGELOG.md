@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Bump version number to 0.8.6. [#1206](https://github.com/geli-lms/geli/pull/1206)
+- Update frontend to Angular 7. [#889](https://github.com/geli-lms/geli/issues/889)
 
 ### Fixed
 - Apidoc: parser plugin 'param' not found in block. [#1207](https://github.com/geli-lms/geli/pull/1207)

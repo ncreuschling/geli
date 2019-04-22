@@ -3,7 +3,7 @@ import {UserService} from '../shared/services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CourseService} from '../shared/services/data.service';
 import { ReportService } from '../shared/services/data/report.service';
-import {saveAs} from 'file-saver/FileSaver';
+import {saveAs} from 'file-saver';
 import {SnackBarService} from '../shared/services/snack-bar.service';
 import {TranslateService} from '@ngx-translate/core';
 

@@ -5,7 +5,7 @@ import {LectureCheckboxComponent} from './downloadCheckBoxes/lecture-checkbox.co
 import {DownloadFileService} from 'app/shared/services/data.service';
 import {IDownload} from '../../../../../../../shared/models/IDownload';
 import {SaveFileService} from '../../../shared/services/save-file.service';
-import {saveAs} from 'file-saver/FileSaver';
+import {saveAs} from 'file-saver';
 import {DataSharingService} from '../../../shared/services/data-sharing.service';
 
 @Component({
@@ -123,7 +123,7 @@ export class DownloadCourseDialogComponent implements OnInit {
         } else if (this.radioSelect === 'Single') {
           result = await this.downloadReq.postDownloadReqForCoursePDFSingle(downloadObj);
         }
-        const response = <Response> await this.downloadReq.getFile(result.toString());
+        const response = await this.downloadReq.getFile(result.toString());
         saveAs(response.body, this.saveFileService.replaceCharInFilename(this.course.name) + '.zip');
         this.showSpinner = false;
         this.disableDownloadButton = false;
